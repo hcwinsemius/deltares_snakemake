@@ -1,0 +1,39 @@
+# This first line is used to save the snake code below into a file called "Snakefile"
+
+######################################################################################
+####################### Content of the Snakefile #####################################
+### Import some useful python library and some needed lines of code ###
+import os
+root = os.getcwd() # or copy here the path to the delatres_snakemake folder eg root = r"d:\repos\deltares_snakemake"
+
+### Parse config options ###
+LINE1 = config["line1"]
+LINE2 = config["line2"]
+
+### Worflow and rules ###
+# Master rule all (needed when several rules are defined, called all by convention)
+rule all:
+    input: root + "/output/snake2.txt"
+
+# Rule to create a text file
+rule create_file:
+    output: root + "/data/snake.txt"
+    params:
+        line1 = LINE1,
+        line2 = LINE2
+    script:
+        "scripts/create_file.py"
+
+# Rule to copy a file in Windows
+rule run_copy_file:
+    input: root + "/data/snake.txt"
+    output: root + "/output/snake.txt"
+    shell:
+        """copy "data\snake.txt" "output\snake.txt" """
+
+# Rule to rename a file
+rule rename_file:
+    input: root + "/output/snake.txt"
+    output: root + "/output/snake2.txt"
+    shell:
+        """ren "output\snake.txt" "snake2.txt" """

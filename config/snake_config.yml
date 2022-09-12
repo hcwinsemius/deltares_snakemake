@@ -5,9 +5,7 @@
 # a relative path to output
 output_dir: output/
 
-# location of data file (will be created with random generators witihn workflow)
-input_csv: data/precip_evapo.csv
-
+## Weather generator parameters ##
 # some other parameters for generating random meteorological forcing with a very simple model
 start_date: 2022-09-01
 end_date: 2022-10-01
@@ -18,12 +16,13 @@ dry_day_fraction: 0.6
 # random numbers are multiplied by this number to ensure we get a certain amount reasonalbe for mm per day 
 multiplier: 50
 
+## Hydrology model parameters ##
 hydro_parameters:
   # below we define some parameters for a very simple hydrological model, stocks in mm and time scales in days
   interception: 1
-  soil_zone: 100
+  storage_1_max: 100
   alpha: 0.6
-  k_f: 7
-  k_s: 150
-  soil_init: 40
-  groundwater_init: 20
+  k_fast: 7
+  k_slow: 150
+  storage_1: 40
+  storage_2: 20

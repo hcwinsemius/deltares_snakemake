@@ -1,0 +1,73 @@
+# This first line is used to save the snake code below into a file called "Snakefile"
+
+######################################################################################
+####################### Content of the Snakefile #####################################
+### Import some useful python library ###
+import pandas as pd
+from snakemake.utils import Paramspace
+
+### Create the Paramspace object ###
+paramspace = Paramspace(pd.read_csv("config/hydro_parameters.csv", sep=","), filename_params="*")
+
+### Functions to get parameter values for each weagen wildcard instance ###
+def get_start_date(wildcards):
+    return config["weagen_ids"][wildcards.weagen]["start_date"]
+
+def get_end_date(wildcards):
+    return config["weagen_ids"][wildcards.weagen]["end_date"]
+
+def get_multiplier(wildcards):
+    return config["weagen_ids"][wildcards.weagen]["multiplier"]
+
+def get_evapo(wildcards):
+    return config["weagen_ids"][wildcards.weagen]["evapo"]
+
+def get_dry_day_frac(wildcards):
+    return config["weagen_ids"][wildcards.weagen]["dry_day_fraction"]
+
+
+
+### Worflow and rules ###
+# The master rule defines what eventually will be expected as output, basically it is a rule with only inputs
+rule all:
+    input:
+        output_png = 'output/RR_results.png'
+    	
+
+# rule to generate weather timeseries
+rule weather_generator:
+    # there is not input section because this rule does not require any inputs
+    output:
+        weather_csv = "data/precip_evapo_{weagen}.csv"
+    # parameters can be anything like strings, numbers, etc.
+    params:
+    	start_date = get_start_date,
+    	end_date = get_end_date,
+    	multiplier = get_multiplier,
+    	evapo = get_evapo,
+    	dry_day_fraction = get_dry_day_frac
+    script:
+        "scripts/weather_generator.py"
+
+# Rule to run the hydrology model with input from the weather generator
+rule run_simple_model:
+    input:
+        weather_csv = "data/precip_evapo_{weagen}.csv"
+    output:
+        hydro_csv = config["output_dir"] + "river_flow_{weagen}_" + f"{paramspace.wildcard_pattern}.csv"
+    params:
+        hydro_parameters = paramspace.instance,
+    script:
+        "scripts/simple_hydrology.py"
+
+# Rule to plot the outputs of the combined weather generator and hydrological models for all runs
+rule plot_results:
+    input:
+        clim_files = expand(("data/precip_evapo_{weagen}.csv"), weagen=config["weagen_ids"]),
+        hydro_files = expand((config["output_dir"] + "river_flow_{weagen}_{params}.csv"), weagen=config["weagen_ids"], params=paramspace.instance_patterns),
+    output:
+        output_png = 'output/RR_results.png'
+    params:
+        plot_variables = ['p', 'ep', 'Q']
+    script:
+        "scripts/saved/plot_timeseries_snakemake.py"

@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Intermediate files from the notebook
+Snakefile
+Snakefile_RR
+_images/
+config/hydro_parameters.csv
+config/snake_config_RR.yml
+config/snake_file_config.yml
+data/snake*.txt
+data/precip_evapo*.csv
+data/weather_plot.jpg
+output/river_flow*.csv
+.snakemake/

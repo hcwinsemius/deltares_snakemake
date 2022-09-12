@@ -5,8 +5,8 @@ It uses Jupyter notebooks and requires a python installation.
 
 Two exercises are prepared around two workflows:
 
-- a simple workflow for file manipulation in Windows: notebooks/1_first_workflow.ipynb
-- a more advanced workflow with a simple weather generator and hydrological model: notebooks/2_rainfall_runoff_workflow.ipynb
+- a simple workflow for file manipulation in Windows: [notebooks/1_first_workflow.ipynb](https://github.com/hcwinsemius/deltares_snakemake/blob/main/notebooks/1_first_workflow.ipynb)
+- a more advanced workflow with a simple weather generator and hydrological model: [notebooks/2_rainfall_runoff_workflow.ipynb](https://github.com/hcwinsemius/deltares_snakemake/blob/main/notebooks/2_rainfall_runoff_workflow.ipynb)
 
 ## Installation
 ### Python and conda/mamba
@@ -18,8 +18,7 @@ We recommend using the [Mambaforge](https://github.com/conda-forge/miniforge#mam
 [Miniconda](https://docs.conda.io/en/latest/miniconda.html) will install Python and the [conda package manager](https://docs.conda.io/en/latest/).
 
 ### Download the content of deltares_snakemake repository
-To run the exercices, you will need to download the content of the deltares_snakemake repository locally. You can either do a [manual download]
-(https://github.com/hcwinsemius/deltares_snakemake/archive/refs/heads/main.zip) and extract the content of the dowloaded ZIP folder or clone the repository locally:
+To run the exercices, you will need to download the content of the deltares_snakemake repository locally. You can either do a [manual download](https://github.com/hcwinsemius/deltares_snakemake/archive/refs/heads/main.zip) and extract the content of the dowloaded ZIP folder or clone the repository locally:
 
 ``` bash
 git clone https://github.com/hcwinsemius/deltares_snakemake.git

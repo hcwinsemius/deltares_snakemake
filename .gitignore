@@ -131,7 +131,7 @@ dmypy.json
 # Intermediate files from the notebook
 Snakefile
 Snakefile_RR
-_images/
+_images/*.png
 config/hydro_parameters.csv
 config/snake_config_RR.yml
 config/snake_file_config.yml

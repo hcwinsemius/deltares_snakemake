@@ -1,7 +1,7 @@
 # deltares_snakemake: Snakemake training Deltares
-This repository contains material to discover Snakemake and its fonctionnalities as a smart and reproducible workflow manager.
+This repository contains material to discover Snakemake and its functionalities as a smart and reproducible workflow manager.
 
-It uses Jupyter notebooks and requires a python installation.
+It uses Jupyter notebooks and requires a Python installation.
 
 Two exercises are prepared around two workflows:
 
@@ -10,7 +10,7 @@ Two exercises are prepared around two workflows:
 
 ## Installation
 ### Python and conda/mamba
-You’ll need Python 3.8 or greater and a package manager such as conda or mamba. These package managers help you to install (Python) packages and 
+You'll need Python 3.8 or greater and a package manager such as conda or mamba. These package managers help you to install (Python) packages and 
 [manage environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) such that different installations do not conflict.
 
 We recommend using the [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge) Python distribution. This installs Python and the 
@@ -39,15 +39,13 @@ mamba env create -f environment.yml
 ## Running the exercises
 We have prepared two iPython notebook examples to discover snakemake in the notebooks folder:
 
-- 1_first_workflow.ipynb: simple workflow for file manipulation in Windows to discover how to write and run a Snakefile, determine rule dependency and use a configuration file.
-- 2_rainfall_runoff_workflow.ipynb: more advanced workflow with a simple weather generator and hydrological model to discover generalization and parallelization in Snakemake with wildcards and Paramspace
+- 1_first_workflow.ipynb: a simple workflow for file manipulation in Windows to discover how to write and run a Snakefile, determine rule dependency and use a configuration file.
+- 2_rainfall_runoff_workflow.ipynb: a more advanced workflow with a simple weather generator and hydrological model to discover generalization and parallelization in Snakemake with wildcards and Paramspace.
 
-You can open and run the notebooks in Visual Studio Code or in Jupyter notebook:
+You can open and run the notebooks in Visual Studio Code or as a Jupyter notebook:
 
 ``` bash
 conda activate snakeymakey
 cd notebooks
 jupyter notebook
 ```
-
-
